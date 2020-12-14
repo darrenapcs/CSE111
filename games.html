@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html> 
+
+<head>
+    <meta charset="utf-8">
+    <title>Games Database</title>
+
+   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+   <script>
+      function populatePlatform() {
+         var selPlatform = document.getElementById('Name');
+         var selGenre = document.getElementById('genre');
+         selGenre.value = "All";
+
+         const API_URL = 'http://10.0.0.110:8000/api/platform';
+         axios.get(`${API_URL}`)
+            .then(response => {
+               //console.log(response.data.data);
+               
+               for (x=0; x<response.data.data.length; x++) {
+                  //console.log(response.data.data[x].maker);
+
+                  option = document.createElement('option');
+                  option.value = response.data.data[x].Name;
+                  option.text = response.data.data[x].Name;
+                  selPlatform.appendChild(option);
+               }
+            })
+            .catch(error =>
+               console.error('populatePlatform', error)
+            )
+      }
+
+      function runQuery() {
+         var selPlatform = document.getElementById('Name').value;
+         var selGenre = document.getElementById('genre').value;
+         //console.log(selMaker);
+         //console.log(selProd);
+
+         var result = document.getElementById('result');
+         result.innerHTML = "";
+
+         const API_URL = `http://10.0.0.110:8000/api/platform-genre/${selPlatform}-${selGenre}`;
+         axios.get(`${API_URL}`)
+            .then(response => {
+               //console.log(response.data.data);
+
+               if (response.data.data.length == 0) {
+                  return;
+               }
+
+               let thead = result.createTHead();
+               let row = thead.insertRow();
+               for (key in response.data.data[0]) {
+                  //console.log(key);
+
+                  let th = document.createElement("th");
+                  let text = document.createTextNode(key);
+                  th.appendChild(text);
+                  row.appendChild(th);
+               }
+               
+               for (x=0; x<response.data.data.length; x++) {
+                  //console.log(response.data.data[x].maker);
+
+                  let row = result.insertRow();
+                  for (k in response.data.data[x]) {
+                     console.log(k);
+
+                     let cell = row.insertCell();
+                     let text = document.createTextNode(response.data.data[x][k]);
+                     cell.appendChild(text);
+                  }
+               }
+            })
+            .catch(error =>
+               console.error('runQuery', error)
+            )
+      }
+   </script>
+
+   <script>
+      function populateCompanies() {
+         var selCompany = document.getElementById('Name1');
+         var selAgeRating = document.getElementById('Agerating');
+         selAgeRating.value = "All";
+
+         const API_URL = 'http://10.0.0.110:8000/api/companies';
+         axios.get(`${API_URL}`)
+            .then(response => {
+               //console.log(response.data.data);
+               
+               for (x=0; x<response.data.data.length; x++) {
+                  //console.log(response.data.data[x].maker);
+
+                  option = document.createElement('option');
+                  option.value = response.data.data[x].Name;
+                  option.text = response.data.data[x].Name;
+                  selCompany.appendChild(option);
+               }
+            })
+            .catch(error =>
+               console.error('populateCompanies', error)
+            )
+      }
+
+      function runQuery1() {
+         var selCompany = document.getElementById('Name1').value;
+         var selAgeRating = document.getElementById('Agerating').value;
+         //console.log(selMaker);
+         //console.log(selProd);
+
+         var result = document.getElementById('result');
+         result.innerHTML = "";
+
+         const API_URL = `http://10.0.0.110:8000/api/companies-Agerating/${selCompany}-${selAgeRating}`;
+         axios.get(`${API_URL}`)
+            .then(response => {
+               //console.log(response.data.data);
+
+               if (response.data.data.length == 0) {
+                  return;
+               }
+
+               let thead = result.createTHead();
+               let row = thead.insertRow();
+               for (key in response.data.data[0]) {
+                  //console.log(key);
+
+                  let th = document.createElement("th");
+                  let text = document.createTextNode(key);
+                  th.appendChild(text);
+                  row.appendChild(th);
+               }
+               
+               for (x=0; x<response.data.data.length; x++) {
+                  //console.log(response.data.data[x].maker);
+
+                  let row = result.insertRow();
+                  for (k in response.data.data[x]) {
+                     console.log(k);
+
+                     let cell = row.insertCell();
+                     let text = document.createTextNode(response.data.data[x][k]);
+                     cell.appendChild(text);
+                  }
+               }
+            })
+            .catch(error =>
+               console.error('runQuery1', error)
+            )
+      }
+   </script>
+
+   <script>
+      function populateGenre() {
+         var selGen = document.getElementById('Name3');
+         var selMode = document.getElementById('mode');
+         selMode.value = "All";
+
+         const API_URL = 'http://10.0.0.110:8000/api/gen';
+         axios.get(`${API_URL}`)
+            .then(response => {
+               //console.log(response.data.data);
+               
+               for (x=0; x<response.data.data.length; x++) {
+                  //console.log(response.data.data[x].maker);
+
+                  option = document.createElement('option');
+                  option.value = response.data.data[x].Name;
+                  option.text = response.data.data[x].Name;
+                  selGen.appendChild(option);
+               }
+            })
+            .catch(error =>
+               console.error('populateGenre', error)
+            )
+      }
+
+      function runQuery3() {
+         var selGen = document.getElementById('Name3').value;
+         var selMode = document.getElementById('mode').value;
+         //console.log(selMaker);
+         //console.log(selProd);
+
+         var result = document.getElementById('result');
+         result.innerHTML = "";
+
+         const API_URL = `http://10.0.0.110:8000/api/gen-mode/${selGen}-${selMode}`;
+         axios.get(`${API_URL}`)
+            .then(response => {
+               //console.log(response.data.data);
+
+               if (response.data.data.length == 0) {
+                  return;
+               }
+
+               let thead = result.createTHead();
+               let row = thead.insertRow();
+               for (key in response.data.data[0]) {
+                  //console.log(key);
+
+                  let th = document.createElement("th");
+                  let text = document.createTextNode(key);
+                  th.appendChild(text);
+                  row.appendChild(th);
+               }
+               
+               for (x=0; x<response.data.data.length; x++) {
+                  //console.log(response.data.data[x].maker);
+
+                  let row = result.insertRow();
+                  for (k in response.data.data[x]) {
+                     console.log(k);
+
+                     let cell = row.insertCell();
+                     let text = document.createTextNode(response.data.data[x][k]);
+                     cell.appendChild(text);
+                  }
+               }
+            })
+            .catch(error =>
+               console.error('runQuery1', error)
+            )
+      }
+   </script>
+
+
+</head>
+    
+<body onload="populatePlatform(); populateCompanies(); populateGenre()">
+   <label>Platforms:</label>
+   <select name="Name" id="Name">
+      <option value=''>------- Select --------</option>
+   </select>
+
+   <label>Genre:</label>
+   <select name="genre" id="genre">
+      <option value='All'>All</option>
+      <option value='Sandbox'>Sandbox</option>
+      <option value='Survival'>Survival</option>
+      <option value='TPS'>TPS</option>
+      <option value='Battle Royale'>Battle Royale</option>
+      <option value='MOBA'>MOBA</option>
+      <option value='Action'>Action</option>
+      <option value='Adventure'>Adventure</option>
+      <option value='FPS'>FPS</option>
+      <option value='Puzzle'>Puzzle</option>
+      <option value='Tilematching'>Tilematching</option>
+      <option value='AR'>AR</option>
+      <option value='Location-based game'>Location-based game</option>
+      <option value='Social Simulation'>Social Simulation</option>
+      <option value='Arcade'>Arcade</option>
+      <option value='Side-scrolling endless runner'>Side-scrolling endless runner</option>
+      <option value='Digital collectible card game'>Digital collectible card game</option>
+      <option value='Platformer'>Platformer</option>
+      <option value='Sports'>Sports</option>
+      <option value='Kart racing'>Kart racing</option>
+      <option value='Fighting'>Fighting</option>
+ 
+   </select>
+
+   <button name="runQ" onclick="runQuery()">Find</button>
+
+   <br><br><br>
+
+   <label>Companies:</label>
+   <select name="Name1" id="Name1">
+      <option value=''>------- Select --------</option>
+   </select>
+
+   <label>AgeRating:</label>
+   <select name="Agerating" id="Agerating">
+      <option value='All'>All</option>
+      <option value='E10+'>E10+</option>
+      <option value='Teen'>Teen</option>
+      <option value='Mature'>Mature</option>
+      <option value='Null'>Null</option>
+      <option value='E'>E</option>
+
+
+   </select>
+
+   <button name="runQ1" onclick="runQuery1()">Find</button>
+
+   <br><br><br>
+
+   <label>Genre:</label>
+   <select name="Name3" id="Name3">
+      <option value=''>------- Select --------</option>
+   </select>
+
+   <label>Mode:</label>
+   <select name="mode" id="mode">
+      <option value='All'>All</option>
+      <option value='Single Player'>Single Player</option>
+      <option value='Multiplayer'>Multiplayer</option>
+      <option value='Both'>Both</option>
+
+   </select>
+
+   <button name="runQ3" onclick="runQuery3()">Find</button>
+
+   <br><br><br>
+
+   <div class="avaiableGames">
+      <table class="table table-stripped">
+         <thead>
+            <tr>
+               <th>Game</th>
+               <th>Rating</th>
+               <th>Payment</th>
+               <th>Published</th>
+               <th>Mode</th>
+            </tr>
+         </thead>
+         <tbody id="data">
+
+         </tbody>
+      </table>
+   </div>
+   <script>
+         fetch("http://10.0.0.110:8000/api/games").then(
+            res=>{
+               res.json().then(
+                  data=>{
+                     console.log(data);
+                     if(data.length > 0){
+                        var temp = "";
+
+                        data.forEach((u)=>{
+                           temp +="<tr>";
+                           temp += "<td>"+u.Games_name+"</td>";
+                           temp += "<td>"+u.Game_rating+"</td>";
+                           temp += "<td>"+u.Game_payment+"</td>";
+                           temp += "<td>"+u.Game_Year+"</td>";
+                           temp += "<td>"+u.Game_mode+"</td></tr>";
+                        })
+
+                        document.getElementById("data").innerHTML = temp;
+                     }
+                  }
+               )
+            }
+         )
+   </script>
+
+   <table name="result" id="result"></table>
+   <table name="result" id="result"></table>
+   <table name="result" id="result"></table>
+   <table name="result" id="result"></table>
+
+</body>
+
+
+</html>

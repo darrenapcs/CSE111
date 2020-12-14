@@ -1,34 +1,17 @@
 {
-  "name": "backend",
+  "name": "cse111proj",
   "version": "1.0.0",
-  "description": "resource app backend",
-  "main": "index.js",
-  "dependencies": {
-    "connect": "^3.7.0",
-    "connect-sqlite3": "^0.9.11",
-    "cors": "^2.8.5",
-    "crypto": "^1.0.1",
-    "express": "^4.17.1",
-    "express-session": "^1.17.1",
-    "node-datetime": "^2.1.2"
-  },
-  "devDependencies": {},
+  "description": "finalproj",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "backend": "node index.js"
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Apro123/ResourceAppBackend.git"
-  },
-  "keywords": [
-    "resource",
-    "app"
-  ],
-  "author": "Armaan Kapoor and Solomon Denning",
-  "license": "None",
-  "bugs": {
-    "url": "https://github.com/Apro123/ResourceAppBackend/issues"
-  },
-  "homepage": "https://github.com/Apro123/ResourceAppBackend#readme"
+  "author": "Daniel",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "md5": "^2.3.0",
+    "sqlite3": "^5.0.0"
+  }
 }
